@@ -674,11 +674,10 @@ function endQuiz() {
     quizElement.innerHTML = `
         <h2>Quiz Completed!</h2>
         <p>${message}</p>
-        <p>Total Correct Answers: ${correctAnswers}</p>
-        <p>Total Partially Correct Answers: ${partiallyCorrectAnswers}</p>
+        <p>Correct Answers: ${correctAnswers} (and ${partiallyCorrectAnswers} partially)</p>
         <p>Total Questions: ${totalQuestions}</p>
+        <p>Points: ${totalPoints}</p>
         <p>Percentage Correct: ${percentageCorrect.toFixed(2)}%</p>
-        <p>Total Points: ${totalPoints}</p>
         <div class="diagramCanvas-container">
             <canvas class="diagramCanvas" id="diagramCanvas" width="200" height="200"></canvas>
         </div>
