@@ -1,0 +1,5 @@
+# Ignore all files in the bak folder
+bak/*
+
+# Except this file
+!bak/.gitkeep

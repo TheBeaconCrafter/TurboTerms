@@ -1,0 +1,319 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2c3e50; /* Dark Background */
+    color: #ecf0f1; /* Light Grey Text */
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: #ecf0f1; /* Light Grey Text */
+}
+
+.homepage {
+    text-align: center;
+    margin-top: 50px;
+}
+
+p {
+    margin: 10px
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db; /* Blue Button */
+    color: #fff; /* White Text */
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker Blue on Hover */
+}
+
+.popup {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.popup,
+.modal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 9999; /* Ensure the popup is on top of other elements */
+}
+
+.popup-content,
+.modal-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #201f1f; /* Popup background color */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 350px;
+    max-width: 800px; /* Adjust the width as needed */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555; /* Darker Grey Close Button */
+}
+
+.close:hover {
+    color: #333; /* Dark Grey on Hover */
+}
+
+.vocabSetsContainer div {
+    margin: 10px; /* Added margin to separate rows */
+    font-size: 18px;
+    font-weight: 400;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* Light Grey Border */
+    border-radius: 5px;
+}
+
+textarea:focus {
+    border: 1px solid #3498db; /* Blue Border on Focus */
+}
+
+.options {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.question {
+    font-size: 30px;
+}
+
+.option {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 10px;
+    margin-right: 50px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.option:hover {
+    background-color: #2980b9;
+}
+
+.quiz {
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+.diagramCanvas-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.diagramCanvas {
+    width: 200px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+}
+
+/* New styles for settings button */
+#settingsBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#settingsBtn:hover {
+    background-color: #2980b9; /* Darker Blue on Hover */
+}
+
+#menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+
+#grid-dropdown {
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    background-color: #2980b9;
+    border: 1px solid #2677ad;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.grid-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Added margin to separate rows */
+}
+
+.grid-item {
+    flex: 0 0 calc(35% - 20px); /* 30% width, allowing for margin, subtracting 20px for margin between items */
+    margin: 0px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; /* Added box-sizing to include padding in the width calculation */
+}
+
+.grid-item-main {
+    flex: 0 0 calc(30% - 20px); /* 30% width, allowing for margin, subtracting 20px for margin between items */
+    margin: 0px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; /* Added box-sizing to include padding in the width calculation */
+}
+
+.grid-item:hover {
+    background-color: #636363;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Popup styles */
+.broadcast-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 9999; /* Ensure the popup is on top of other elements */
+  }
+  
+  .broadcast-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* Popup background color */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 350px;
+    max-width: 800px; /* Adjust the width as needed */
+  }
+  
+  .broadcast-text {
+    font-size: 18px;
+    margin: 10px 0;
+    color: black;
+  }
+  
+  .broadcast-button {
+    background-color: #1da1f2;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .broadcast-button:hover {
+    background-color: #1582d0;
+  }
+
+#progressBarContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px; /* Adjust the height as needed */
+    background-color: #f0f0f0; /* Background color of the progress bar container */
+    z-index: 9999; /* Ensure it's on top of other elements */
+    display: flex;
+    align-items: center; /* Center the progress bar vertically */
+}
+
+#progressBar {
+    width: 100%;
+    height: 100%;
+    appearance: none;
+    background-color: transparent;
+}
+
+#progressBar::-webkit-progress-bar {
+    background-color: transparent;
+}
+
+#progressBar::-webkit-progress-value {
+    background-color: #3498db; /* Color of the progress bar */
+}
+
+#progressIndicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 15px;
+    margin-right: 10px; /* Adjust the margin as needed */
+    color: #3498db; /* Match the color of your progress bar */
+}
+
+.answerInput {
+    width: 70%;
+    padding: 10px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* Light Grey Border */
+    border-radius: 5px;
+}
+

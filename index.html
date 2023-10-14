@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="TurboTerms - Free Quiz App">
+    <meta name="keywords" content="Quiz, Vocab, Vocabulary, Vocabulary Quiz, Quizlet, Vocabquiz, Free Quizlet alternative">
+    <meta name="author" content="Vincent Wackler">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/img/turbotermslogocrop.ico">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>TurboTerms - Free Quiz App</title>
+</head>
+<body>
+    <div class="homepage">
+        <img src="img/turbotermslogofinal.png" alt="TurboTerms Logo" class="logo" height="100px">
+        <h1>Welcome to TurboTerms!</h1>
+        <button id="importBtn">Import Study Set</button>
+        <button id="chooseFromBCN" onclick="openBCNModal()">Select a BCN set</button>
+        <button id="settingsBtn">⚙️</button>
+        <p>‎ </p>
+        <p>TurboTerms is dedicated to revolutionizing education with our free quiz app.</p>
+        <p>We firmly believe that learning tools should be accessible to all students without cost.</p>
+        <p>Join us in making education universally available.</p>
+    </div>
+
+    <div id="quiz" class="quiz">
+        <div id="progressIndicator">0 / 0</div>
+        <h2>TurboTerms Quiz Time!</h2>
+        <div id="progressBarContainer">
+            <progress id="progressBar" value="0" max="100"></progress>
+        </div>
+        <div id="question" class="question"></div>
+        <ul id="options" class="options">
+            <li id="option1" class="option" onclick="checkAnswerMultipleChoice(1)"></li>
+            <li id="option2" class="option" onclick="checkAnswerMultipleChoice(2)"></li>
+            <li id="option3" class="option" onclick="checkAnswerMultipleChoice(3)"></li>
+            <li id="option4" class="option" onclick="checkAnswerMultipleChoice(4)"></li>
+        </ul>
+        <input type="text" id="answerInput" class="answerInput" placeholder="Your Answer">
+        <button onclick="checkAnswer()" id="submitbtn">Submit</button>
+        <button id="exportBtn" onclick="exportStudySet()">Export</button>
+        <button onclick="endQuiz()">End</button>
+    </div>
+
+    <!-- Add this modal to your HTML -->
+<div id="settingsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSettingsModal()">&times;</span>
+        <h2>Settings</h2>
+        <label>
+            <input type="checkbox" id="partialCreditCheckbox" checked="true">
+            Allow partial credit for partially correct answers
+        </label>
+        <br>
+        <label>
+            Accuracy threshold for partial credit:
+            <input type="number" id="accuracyThreshold" min="0" max="1" step="0.1" value="0.75">
+        </label>
+        <br>
+        <button onclick="applySettings()">Apply</button>
+    </div>
+</div>
+
+<div id="menu-icon" onclick="toggleGridDropdown()">
+    <i class="fas fa-th"></i>
+</div>
+
+<div id="grid-dropdown" class="hidden">
+    <!--<p>TEst</p>
+    <h2 style="text-align: center; margin-bottom: 10px;">BEACON</h2>-->
+    <div class="grid-row">
+        <div class="grid-item" onclick="document.location.href = '/'"><i class="fa-solid fa-house"></i></div>
+        <div class="grid-item" onclick="document.location.href = '/downloader'"><i class="fas fa-download"></i></div>
+        <div class="grid-item" onclick="document.location.href = '/phggpt'"><i class="fa-solid fa-brain"></i></div>
+        <div class="grid-item" onclick="document.location.href = 'https://p.thebeaconcrafter.club'"><i class="fa-solid fa-walkie-talkie"></i></div>
+        <div class="grid-item" onclick="document.location.href = '/cheeseclicker'"><i class="fa-solid fa-cheese"></i></div>
+        <div class="grid-item" onclick="document.location.href = ''"><i class="fa-solid fa-info"></i></div>
+        <div class="grid-item" onclick="document.location.href = '/study'"><i class="fas fa-book"></i></div>
+        <div class="grid-item" onclick="notYetAvailable()"><i class="fas fa-x"></i></div>
+        <div class="grid-item" onclick="notYetAvailable()"><i class="fas fa-x"></i></div>
+    </div>
+</div>
+
+<div id="bcnsetsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeBCNModal()">&times;</span>
+        <h2>BCN-Sets</h2>
+        <br>
+        <div id="vocabSetsContainer" class="vocabSetsContainer">
+            <!-- Vocab sets will be displayed here -->
+        </div>
+        <br>
+        <button onclick="closeBCNModal()">Close</button>
+    </div>
+</div>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <textarea id="vocabInput" placeholder="Paste your vocab in this format here: Vocab 1#Translation 1;Vocab 2#Translation 2;"></textarea>
+        <input type="file" id="importFileBtn" accept=".wvocab">
+        <button onclick="addFromInternet()">Add from internet</button>
+        <button onclick="importVocab()">OK</button>
+    </div>
+</div>
+
+<div id="broadcastPopup" class="broadcast-popup">
+    <div class="broadcast-content">
+      <p id="broadcastText" class="broadcast-text"></p>
+      <button id="broadcastButton1" class="broadcast-button"></button>
+      <button id="broadcastButton2" class="broadcast-button"></button>
+    </div>
+  </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+<footer>
+    <b>Coded by vncntwww</b><br><b>TurboTerms Version 1.0.2</b>
+</footer>
+
+</html>
