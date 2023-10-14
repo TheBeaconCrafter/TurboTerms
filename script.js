@@ -580,11 +580,14 @@ function checkAnswer() {
     const wordWithMissingSymbols = correctAnswer.replace(/[\/\(\)\*.,]/g, '');
     const userAnswerWithMissingSymbols = userAnswer.replace(/[\/\(\)\*.,]/g, '');
 
+    const wordWithMissingSymbolsSpace = correctAnswer.replace(/[\/\(\)\*.,]/g, ' ');
+    const userAnswerWithMissingSymbolsSpace = userAnswer.replace(/[\/\(\)\*.,]/g, ' ');
+
     // Calculate the score based on adjusted accuracy
     let score;
     if (accuracy >= 1) {
         score = 1;
-    } else if (accuracy >= accuracyThreshold && allowPartialCredit || deviation <= 1 && allowPartialCredit && userAnswer.length >= 4) { // Modified this line
+    } else if (accuracy >= accuracyThreshold && allowPartialCredit || deviation <= 1 && allowPartialCredit && userAnswer.length >= 4 && accuracy >= 0.9) {
         score = 0.5;
     } else {
         score = 0;
@@ -597,7 +600,7 @@ function checkAnswer() {
     // Add the score to the total
     totalScore += score;
 
-    if (accuracy >= 1 || userAnswerWithMissingSymbols.toLowerCase() === wordWithMissingSymbols.toLowerCase()) {
+    if (accuracy >= 1 || userAnswerWithMissingSymbols.toLowerCase() === wordWithMissingSymbols.toLowerCase() || userAnswerWithMissingSymbolsSpace.toLowerCase() === wordWithMissingSymbolsSpace.toLowerCase()) {
         console.log("[DEBUG] Answer is correct!");
         console.log("Accuracy: " + accuracy + " | Deviation: " + deviation + " | Symbols Missing: " + symbolsMissing + " | Answer: " + userAnswer + " | Missing Symbols Answer: " + wordWithMissingSymbols + " | UserA wo symbols" + userAnswerWithMissingSymbols + " | Correct Answer: " + correctAnswer);
         alert(`Correct: ${correctAnswerOriginalCase}!`);
