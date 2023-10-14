@@ -2,6 +2,8 @@
 
 TurboTerms is a powerful vocabulary learning web application that helps you enhance your language skills through interactive quizzes.
 
+![Turboterms](https://github.com/TheBeaconCrafter/TurboTerms/blob/main/img/turbotermsscreenshot.png?raw=true)
+
 ## Features
 
 - **Flashcard Quizzes:** Practice and reinforce your vocabulary with flashcard-style quizzes.
