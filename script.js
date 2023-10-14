@@ -15,7 +15,7 @@
 //  The app is written in HTML, CSS and JavaScript.
 //  Source code was last modified on 2023-10-14
 
-const serverURL = "https://YOURSERVER/server/"; //Modify this to your server URL
+//const serverURL = "https://YOURSERVER/server/"; //Modify this to your server URL
 
 var allowPartialCredit = true;
 var accuracyThreshold = 0.75;

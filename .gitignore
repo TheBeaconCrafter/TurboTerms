@@ -3,3 +3,6 @@ bak/*
 
 # Except this file
 !bak/.gitkeep
+
+# Ignore variables.js
+secrets.js
