@@ -6,3 +6,5 @@ bak/*
 
 # Ignore variables.js
 secrets.js
+
+.DS_Store
