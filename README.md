@@ -7,7 +7,7 @@ Have you ever wanted to selfhost a vocabulary learning application? Most likely 
 
 TurboTerms is free to use on my public instance or you can selfhost it. It does not use much processing power of your server, as it is caching almost everything and doing most things on client-side, which is also faster. There is a TurboTerms server, which is not yet opensource. You can just disable that functionality though. TurboTerms was created to support students that don't want to pay for learning tools.
 
-![Turboterms](https://github.com/TheBeaconCrafter/TurboTerms/blob/main/img/turbotermsscreenshot.png?raw=true)
+![Turboterms](https://github.com/TheBeaconCrafter/TurboTerms/blob/main/img/turbotermspresentation.png?raw=true)
 
 ## Features
 
