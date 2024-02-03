@@ -23,19 +23,19 @@ TurboTerms was created to support students that don't want to pay for learning t
 -  **Offline Support:** You don't need to be online and waste your precious cellular data to use TurboTerms. Once opened, it will be cached and work offline!
 
 ## Getting started
-**1.** Start by downloading the sourcecode of the [latest release](https://github.com/TheBeaconCrafter/TurboTerms/releases) from the sidebar or cloning this repository.
-**2.** Move the files to the root directory (or practically wherever you want) of your webserver (for example Apache, nginx)
+1. Start by downloading the sourcecode of the [latest release](https://github.com/TheBeaconCrafter/TurboTerms/releases) from the sidebar or cloning this repository.
+2. Move the files to the root directory (or practically wherever you want) of your webserver (for example Apache, nginx)
 
 You could now also selfhost a server that handles requests to a filestorage for your vocab sets. This is only recommend for public instances where you want all users to access specific vocab sets. If you don't need that, skip to step 6. If you want to set up a server, please continue reading.
 
-**3.** To set up the server, please download it from [here](https://github.com/TheBeaconCrafter/turbotermsserver). (It might not be available yet!)
-**4.** Run the server with node after installing all required packages. You can also create a systemctl config.
-**5.** In your client directory, there is a file called "secretsExample.js". Rename it to secrets.js and enter your serverURL and fileStorageURL.
+3. To set up the server, please download it from [here](https://github.com/TheBeaconCrafter/turbotermsserver). (It might not be available yet!)
+4. Run the server with node after installing all required packages. You can also create a systemctl config.
+5. In your client directory, there is a file called "secretsExample.js". Rename it to secrets.js and enter your serverURL and fileStorageURL.
 
 The server should now be ready.
 
-**6.** Open up config.js and change your version number if you want. Here you can also remove the server feature if you don't want to use it.
-**7.** Start your webserver and navigate to where you installed TurboTerms.
+6. Open up config.js and change your version number if you want. Here you can also remove the server feature if you don't want to use it.
+7. Start your webserver and navigate to where you installed TurboTerms.
 
 **You now have your very own instance of TurboTerms!**
 
