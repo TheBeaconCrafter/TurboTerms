@@ -1,5 +1,0 @@
-Hi! In the next message, I will give you my vocab. I want you to sort it into a WVOCAB compatible format. A WVOCAB compatible format looks like this:
-
-vocab1#translation1;vocabexample2#translation example 2;Bart#beard;Nagel#nail;
-
-Please convert the vocabulary into the WVOCAB format.

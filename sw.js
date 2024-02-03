@@ -21,6 +21,7 @@ self.addEventListener('install', (event) => {
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css',
             './dependencies/chart.js',
             './dependencies/dragdroptouch.js',
+            './config.js',
         ];
 
         // Iterate over resources and cache them individually

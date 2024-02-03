@@ -24,6 +24,14 @@
 
 var isDragDropEnabled = true;
 
+///////////////
+//NAMING&VARS//
+///////////////
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById('versionNumber').innerHTML = applicationVersion;
+});
+
 //////////
 //POPUPS//
 //////////

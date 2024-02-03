@@ -41,6 +41,17 @@ document.getElementById('importFileBtn').addEventListener('change', function (ev
     }
 });
 
+///////////////
+//NAMING&VARS//
+///////////////
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('versionNumber').innerHTML = applicationVersion;
+    if(disableServer) {
+        document.getElementById('chooseFromBCN').style.display = 'none';
+    }
+});
+
 //////////
 //POPUPS//
 //////////
@@ -315,7 +326,7 @@ function addFromInternet() {
 }
 
 function loadBCNSet(setname) {
-                fetch("https://turboterms.thebeaconcrafter.club/vocabsets/" + setname)
+                fetch(fileStorageURL + setname)
                     .then(response => response.text())
                     .then(content => processInput(content))
                     .catch(error => {
@@ -326,7 +337,7 @@ function loadBCNSet(setname) {
 }
 
 function loadBCNSetWithDir(directory, setname) {
-    fetch("https://turboterms.thebeaconcrafter.club/vocabsets/" + directory + "/" + setname)
+    fetch(fileStorageURL + directory + "/" + setname)
                     .then(response => response.text())
                     .then(content => processInput(content))
                     .catch(error => {
