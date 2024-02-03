@@ -16,11 +16,21 @@ footer {
 .homepage {
     text-align: center;
     margin-top: 50px;
+    margin: 10px;
+}
+
+#dummy {
+    display: none !important;
 }
 
 p {
     margin: 10px
 }
+
+#vocabTable .vocab-row.drag-over td {
+    border: 1px dashed #1d1c1c !important;
+}
+
 
 button {
     padding: 10px;
@@ -37,12 +47,14 @@ button:hover {
     background-color: #2980b9; /* Darker Blue on Hover */
 }
 
+
 .popup {
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
 }
 
 .popup,
-.modal {
+.modal,
+.createPopup {
     display: none;
     position: fixed;
     width: 100%;
@@ -139,6 +151,93 @@ textarea:focus {
     font-size: 20px;
 }
 
+#vocabBuilderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .centered-cell {
+    text-align: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+  }
+  
+  .vocabTable {
+    user-select: none; /* Prevent text selection */
+  }
+  
+  /* Show plus button only if there is at least one row */
+  #vocabBuilderContainer .vocab-row + .centered-cell button {
+    display: inline-block;
+  }
+  
+
+.vocabbuilder-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.drag-controls {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#vocabTable {
+    border-collapse: separate;
+    border-spacing: 8px; /* Adjust the spacing between columns as needed */
+    width: 95%;
+}
+
+#vocabTable th,
+.vocab-row td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.vocab-row:hover {
+    background-color: #f5f5f5;
+}
+
+/* Add these styles for modern text inputs */
+
+.vocab-input,
+.translation-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Define a class for the action column cells */
+.action-cell {
+    width: 10%; /* Adjust the width as needed */
+}
+
+/* Optional: Center the button in the cell */
+.action-cell button {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+.centered-cell {
+    text-align: center;
+}
+
+
+
 .diagramCanvas-container {
     display: flex;
     justify-content: center;
@@ -151,22 +250,16 @@ textarea:focus {
 }
 
 /* New styles for settings button */
-#settingsBtn {
+.homepage-buttons {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 0px;
+    right: 0px;
     font-size: 24px;
-    background-color: #3498db;
     color: #fff;
     border: none;
     border-radius: 50%;
     cursor: pointer;
     padding: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#settingsBtn:hover {
-    background-color: #2980b9; /* Darker Blue on Hover */
 }
 
 #menu-icon {
@@ -174,6 +267,10 @@ textarea:focus {
     top: 20px;
     left: 20px;
     cursor: pointer;
+}
+
+#turbotermslogo {
+    margin-top: 50px;
 }
 
 #grid-dropdown {
@@ -316,4 +413,25 @@ textarea:focus {
     border: 1px solid #ccc; /* Light Grey Border */
     border-radius: 5px;
 }
+
+#importFileBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  .custom-file-input {
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+
+  .custom-file-input:hover {
+    background-color: #45a049;
+  }
 

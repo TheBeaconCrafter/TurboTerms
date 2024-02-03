@@ -6,25 +6,38 @@
     <meta name="keywords" content="Quiz, Vocab, Vocabulary, Vocabulary Quiz, Quizlet, Vocabquiz, Free Quizlet alternative">
     <meta name="author" content="Vincent Wackler">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="./img/turbotermslogocrop.ico">
-    <script src="./chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="./dependencies/chart.js"></script>
     <title>TurboTerms - Free Quiz App</title>
 </head>
 <body>
     <div class="homepage">
-        <img src="img/turbotermslogofinal.png" alt="TurboTerms Logo" class="logo" height="100px">
+        <img src="img/turbotermslogofinal.png" alt="TurboTerms Logo" class="logo" height="100px" id="turbotermslogo">
         <h1>Welcome to TurboTerms!</h1>
-        <button id="importBtn">Import Study Set</button>
-        <button id="chooseFromBCN" onclick="openBCNModal()">Select a BCN set</button>
-        <button id="settingsBtn">⚙️</button>
+        <button id="createButton">Create Study Set</button>
+        <button id="importButton">Your Study Sets</button>
+        <button id="chooseFromBCN" onclick="openBCNModal()">Online Sets</button>
+        <div class="homepage-buttons">
+            <button id="downloadButton" onclick="document.location.href = './download'">
+                <i class="fas fa-download"></i>
+            </button>
+            <button id="githubButton" onclick="document.location.href = 'https://github.com/TheBeaconCrafter/turboterms'">
+                <i class="fab fa-github"></i>
+            </button>
+            <button id="settingsBtn"><i class="fas fa-gear"></i></button>
+        </div>
         <p>‎ </p>
         <p>TurboTerms is dedicated to revolutionizing education with our free quiz app.</p>
         <p>We firmly believe that learning tools should be accessible to all students without cost.</p>
         <p>Join us in making education universally available.</p>
+        <p>TurboTerms - by students, for students!</p>
     </div>
 
+    
     <div id="quiz" class="quiz">
         <div id="progressIndicator">0 / 0</div>
         <h2>TurboTerms Quiz Time!</h2>
@@ -86,7 +99,7 @@
 <div id="bcnsetsModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeBCNModal()">&times;</span>
-        <h2>BCN-Sets</h2>
+        <h2>Online Sets</h2>
         <br>
         <div id="vocabSetsContainer" class="vocabSetsContainer">
             <!-- Vocab sets will be displayed here -->
@@ -96,15 +109,27 @@
     </div>
 </div>
 
+<!-- This is the importing popup (Your Study Sets) -->
 <div id="popup" class="popup">
     <div class="popup-content">
         <span class="close" onclick="closePopup()">&times;</span>
-        <textarea id="vocabInput" placeholder="Paste your vocab in this format here: Vocab 1#Translation 1;Vocab 2#Translation 2;"></textarea>
+        <h2>Choose an option:</h2>
+        <label for="importFileBtn" class="custom-file-input">Upload a File</label>
         <input type="file" id="importFileBtn" accept=".wvocab">
-        <button onclick="addFromInternet()">Add from internet</button>
-        <button onclick="importVocab()">OK</button>
+        <button class="custom-button" onclick="addFromInternet()">Add from Internet</button>
     </div>
 </div>
+
+<!-- This is the creating popup (Create Study Set) -->
+<div id="createPopup" class="createPopup">
+    <div class="popup-content">
+        <span class="close" onclick="closeCreatePopup()">&times;</span>
+        <h2><b>BETA Feature - Vocab Builder</b></h2>
+        <p>Use the Vocab Builder to create your own study sets. Please save your work as often as possible, as this feature is still in Beta and progress could be lost!</p>
+        <button class="custom-button" onclick="document.location.href = './vocabbuilder'">Use Vocab Builder</button>
+    </div>
+</div>
+
 
 <div id="broadcastPopup" class="broadcast-popup">
     <div class="broadcast-content">
@@ -114,12 +139,12 @@
     </div>
   </div>
 
-    <script src="secrets.js"></script><!-- Comment this out please -->
+    <script src="secrets.js"></script>
     <script src="script.js"></script>
 </body>
 
 <footer>
-    <b>Coded by vncntwww</b><br><b>TurboTerms Version 1.0.3</b>
+    <b>Coded by Vincent Wackler</b><br><b>TurboTerms Version 1.1.0</b>
 </footer>
 
 </html>

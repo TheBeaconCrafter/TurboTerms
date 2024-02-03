@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="TurboTerms - Free Quiz App">
+    <meta name="keywords" content="Quiz, Vocab, Vocabulary, Vocabulary Quiz, Quizlet, Vocabquiz, Free Quizlet alternative">
+    <meta name="author" content="Vincent Wackler">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="./img/turbotermslogocrop.ico">
+    <script id="dragDropScript" src="/dependencies/dragdroptouch.js"></script>
+    <title>TurboTerms - Free Quiz App</title>
+</head>
+<body>
+    <script>
+        //QUICK WARNING: THIS FOLLOWS THE PRINCIPLE OF QUICK AND DIRTY
+        //THIS CODE FUCKING SUCKS
+        //I DON'T HAVE A BETTER SOLUTION RN
+        //Also, for some idiotic reason I can't put this in the main script
+
+        document.addEventListener("DOMContentLoaded", function() { //TODO: Fix the checkmark bug, doesn't activate first try. At least it works lol
+            var isDragDropEnabled = localStorage.getItem('isDragDropEnabled'); // Retrieve the value from local storage or default to true
+            console.log("On Init, dragDropEnablec from localstorage is: " + isDragDropEnabled);
+            if (isDragDropEnabled == "false") {
+                console.log("Didn't check the mark: var is " + isDragDropEnabled);
+                document.getElementById("enableScriptCheckbox").checked = false;
+            } else {
+                document.getElementById("enableScriptCheckbox").checked = true;
+                console.log("Checked the mark, is enabled! " + isDragDropEnabled);
+            }
+        });
+    
+        function toggleScript() {
+            isDragDropEnabled = !isDragDropEnabled;
+            console.log("isDragDropEnabled: " + isDragDropEnabled);
+            localStorage.setItem('isDragDropEnabled', isDragDropEnabled);
+            reloadScript();
+        }
+    
+        function reloadScript() {
+            var scriptElement = document.getElementById("dragDropScript");
+            var newScriptElement = document.createElement("script");
+            newScriptElement.id = "dragDropScript";
+            newScriptElement.src = "/dependencies/dragdroptouch.js";
+            scriptElement.parentNode.replaceChild(newScriptElement, scriptElement);
+        }
+    
+        // Initial script load
+        reloadScript();
+    </script>
+    
+    <div class="homepage">
+        <img src="../img/turbotermslogofinal.png" onclick="document.location.href = '../'" alt="TurboTerms Logo" class="logo" height="70px">
+        <h2>TurboTerms Vocab Builder</h2>
+        <p>This application helps you create a .wvocab set, so you can use it to study on TurboTerms.</p>
+        <p>Please remember to <b>save</b> your vocab as often as possible!</p>
+        <p>This feature is still in <b>Beta</b>!</p>
+    </div>
+
+    <div id="vocabbuilder-controls" class="vocabbuilder-controls">
+        <button onclick="exportVocabQuestion()">Export Vocab</button>
+        <button onclick="importVocabQuestion()">Import Vocab</button>
+    </div>
+    
+    <div id="vocabBuilderContainer">
+        <label>
+            <input type="checkbox" id="enableScriptCheckbox" class="drag-controls" onchange="toggleScript()">
+            Enable Drag and Drop
+        </label>
+        <table id="vocabTable">
+            <thead>
+                <tr>
+                    <th>Vocab</th>
+                    <th>Translation</th>
+                    <th class="action-cell">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="draggableBody" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                <tr class="vocab-row" id="dummy" draggable="true" ondragstart="handleDragStart(event)">
+                    <td><input type="text" class="vocab-input" placeholder="Enter Vocab"></td>
+                    <td><input type="text" class="translation-input" placeholder="Enter Translation"></td>
+                    <td class="action-cell"><button onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                 <!-- For some fucked up reason this has to exist for dragndrop to work.
+                    The dummy tag makes it invisible, and somehow also doesn't corrupt the export, thank god! -->
+            </tbody>
+        </table>
+        <div class="centered-cell">
+            <button onclick="addRow()">+</button>
+        </div>
+    </div>
+
+<div id="menu-icon" onclick="toggleGridDropdown()">
+    <i class="fas fa-th"></i>
+</div>
+
+<div id="grid-dropdown" class="hidden">
+    <div class="grid-row">
+        <div class="grid-item" onclick="document.location.href = '/'"><i class="fa-solid fa-house"></i></div>
+        <div class="grid-item" onclick="document.location.href = '/downloader'"><i class="fas fa-download"></i></div>
+        <div class="grid-item" onclick="document.location.href = '/phggpt'"><i class="fa-solid fa-brain"></i></div>
+        <div class="grid-item" onclick="document.location.href = 'https://p.thebeaconcrafter.club'"><i class="fa-solid fa-walkie-talkie"></i></div>
+        <div class="grid-item" onclick="document.location.href = '/cheeseclicker'"><i class="fa-solid fa-cheese"></i></div>
+        <div class="grid-item" onclick="document.location.href = ''"><i class="fa-solid fa-info"></i></div>
+        <div class="grid-item" onclick="document.location.href = '/study'"><i class="fas fa-book"></i></div>
+        <div class="grid-item" onclick="notYetAvailable()"><i class="fas fa-x"></i></div>
+        <div class="grid-item" onclick="notYetAvailable()"><i class="fas fa-x"></i></div>
+    </div>
+</div>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <label for="importFileBtn" class="custom-file-input">Choose a file</label>
+        <input type="file" id="importFileBtn" accept=".wvocab">
+        <button class="custom-file-input" onclick="addFromInternet()">Add from internet</button>
+        <button class="custom-file-input" onclick="importVocab()">Use Vocab Builder</button>
+    </div>
+</div>
+
+<div id="broadcastPopup" class="broadcast-popup">
+    <div class="broadcast-content">
+      <p id="broadcastText" class="broadcast-text"></p>
+      <button id="broadcastButton1" class="broadcast-button"></button>
+      <button id="broadcastButton2" class="broadcast-button"></button>
+    </div>
+  </div>
+
+    <script src="script.js"></script>
+</body>
+
+<footer>
+    <b>Coded by Vincent Wackler</b><br><b>TurboTerms Version 1.1.0</b>
+</footer>
+
+</html>

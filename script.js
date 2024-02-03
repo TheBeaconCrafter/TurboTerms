@@ -13,14 +13,15 @@
 //  Coded by vncntwww :)
 //  This is a simple web app that allows you to create and study flashcards.
 //  The app is written in HTML, CSS and JavaScript.
-//  Source code was last modified on 2023-10-14
+//  Source code was last modified on 2024-02-02
 
 //const serverURL = "https://YOURSERVER/server/"; //Modify this to your server URL
 
 var allowPartialCredit = true;
 var accuracyThreshold = 0.75;
 
-document.getElementById('importBtn').addEventListener('click', openPopup);
+document.getElementById('createButton').addEventListener('click', openCreatePopup);
+document.getElementById('importButton').addEventListener('click', openPopup);
 document.getElementById('settingsBtn').addEventListener('click', openSettingsModal);
 
 document.getElementById('importFileBtn').addEventListener('change', function (event) {
@@ -50,6 +51,14 @@ function openPopup() {
 
 function closePopup() {
     document.getElementById('popup').style.display = 'none';
+}
+
+function openCreatePopup() {
+    document.getElementById('createPopup').style.display = 'block';
+}
+
+function closeCreatePopup() {
+    document.getElementById('createPopup').style.display = 'none';
 }
 
 
@@ -485,6 +494,17 @@ function getRandomFlashcard() {
 let totalQuestions = 0;
 let correctAnswers = 0;
 
+// Add event listeners for number keys 1 to 4
+document.addEventListener('keydown', function(event) {
+    if (multipleChoiceMode) {
+        const keyNumber = parseInt(event.key);
+        if (keyNumber >= 1 && keyNumber <= 4) {
+            checkAnswerMultipleChoice(keyNumber);
+        }
+    }
+});
+
+// Modify the function checkAnswerMultipleChoice to accept the selected option directly
 function checkAnswerMultipleChoice(optionNumber) {
     const selectedOption = document.getElementById(`option${optionNumber}`).innerText;
     const currentCard = flashcards[currentCardIndex];

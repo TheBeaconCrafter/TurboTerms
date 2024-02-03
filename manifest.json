@@ -1,0 +1,31 @@
+{
+    "name": "TurboTerms",
+    "short_name": "TurboTerms",
+    "description": "TurboTerms is a free and open-source learning tool for vocabulary",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2c3e50",
+    "icons": [
+      {
+        "src": "img/turbotermslogocrop.jpg",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "img/turbotermslogocrop.jpg",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "splash_pages": null,
+    "prefer_related_applications": false,
+    "related_applications": [],
+    "orientation": "any",
+    "scope": "/",
+    "serviceworker": {
+      "src": "/service-worker.js",
+      "scope": "/"
+    }
+  }
+  
