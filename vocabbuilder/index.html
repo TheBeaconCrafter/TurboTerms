@@ -20,7 +20,7 @@
         //I DON'T HAVE A BETTER SOLUTION RN
         //Also, for some idiotic reason I can't put this in the main script
 
-        document.addEventListener("DOMContentLoaded", function() { //TODO: Fix the checkmark bug, doesn't activate first try. At least it works lol
+        document.addEventListener("DOMContentLoaded", function() { //TODO: Fix the checkmark bug on mobile, doesn't activate first try. At least it works lol
             var isDragDropEnabled = localStorage.getItem('isDragDropEnabled'); // Retrieve the value from local storage or default to true
             console.log("On Init, dragDropEnablec from localstorage is: " + isDragDropEnabled);
             if (isDragDropEnabled == "false") {
@@ -91,24 +91,6 @@
             <button onclick="addRow()">+</button>
         </div>
     </div>
-
-<div id="menu-icon" onclick="toggleGridDropdown()">
-    <i class="fas fa-th"></i>
-</div>
-
-<div id="grid-dropdown" class="hidden">
-    <div class="grid-row">
-        <div class="grid-item" onclick="document.location.href = '/'"><i class="fa-solid fa-house"></i></div>
-        <div class="grid-item" onclick="document.location.href = '/downloader'"><i class="fas fa-download"></i></div>
-        <div class="grid-item" onclick="document.location.href = '/phggpt'"><i class="fa-solid fa-brain"></i></div>
-        <div class="grid-item" onclick="document.location.href = 'https://p.thebeaconcrafter.club'"><i class="fa-solid fa-walkie-talkie"></i></div>
-        <div class="grid-item" onclick="document.location.href = '/cheeseclicker'"><i class="fa-solid fa-cheese"></i></div>
-        <div class="grid-item" onclick="document.location.href = ''"><i class="fa-solid fa-info"></i></div>
-        <div class="grid-item" onclick="document.location.href = '/study'"><i class="fas fa-book"></i></div>
-        <div class="grid-item" onclick="notYetAvailable()"><i class="fas fa-x"></i></div>
-        <div class="grid-item" onclick="notYetAvailable()"><i class="fas fa-x"></i></div>
-    </div>
-</div>
 
 <div id="popup" class="popup">
     <div class="popup-content">

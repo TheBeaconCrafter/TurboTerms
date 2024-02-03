@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js?$modena=vue-personal-page', {
+                    scope: '/'
+                });
+            });
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="description" content="TurboTerms - Free Quiz App">
     <meta name="keywords" content="Quiz, Vocab, Vocabulary, Vocabulary Quiz, Quizlet, Vocabquiz, Free Quizlet alternative">
@@ -73,26 +82,7 @@
         </label>
         <br>
         <button onclick="applySettings()">Apply</button>
-    </div>
-</div>
-
-<div id="menu-icon" onclick="toggleGridDropdown()">
-    <i class="fas fa-th"></i>
-</div>
-
-<div id="grid-dropdown" class="hidden">
-    <!--<p>TEst</p>
-    <h2 style="text-align: center; margin-bottom: 10px;">BEACON</h2>-->
-    <div class="grid-row">
-        <div class="grid-item" onclick="document.location.href = '/'"><i class="fa-solid fa-house"></i></div>
-        <div class="grid-item" onclick="document.location.href = '/downloader'"><i class="fas fa-download"></i></div>
-        <div class="grid-item" onclick="document.location.href = '/phggpt'"><i class="fa-solid fa-brain"></i></div>
-        <div class="grid-item" onclick="document.location.href = 'https://p.thebeaconcrafter.club'"><i class="fa-solid fa-walkie-talkie"></i></div>
-        <div class="grid-item" onclick="document.location.href = '/cheeseclicker'"><i class="fa-solid fa-cheese"></i></div>
-        <div class="grid-item" onclick="document.location.href = ''"><i class="fa-solid fa-info"></i></div>
-        <div class="grid-item" onclick="document.location.href = '/study'"><i class="fas fa-book"></i></div>
-        <div class="grid-item" onclick="notYetAvailable()"><i class="fas fa-x"></i></div>
-        <div class="grid-item" onclick="notYetAvailable()"><i class="fas fa-x"></i></div>
+        <button onclick="updateAppDialogue()">Update App</button>
     </div>
 </div>
 
@@ -141,6 +131,7 @@
 
     <script src="secrets.js"></script>
     <script src="script.js"></script>
+    <script src="caching/cache.js"></script>
 </body>
 
 <footer>

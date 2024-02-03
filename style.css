@@ -273,48 +273,6 @@ textarea:focus {
     margin-top: 50px;
 }
 
-#grid-dropdown {
-    position: fixed;
-    top: 60px;
-    left: 20px;
-    background-color: #2980b9;
-    border: 1px solid #2677ad;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: none;
-}
-
-.grid-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 20px; /* Added margin to separate rows */
-}
-
-.grid-item {
-    flex: 0 0 calc(35% - 20px); /* 30% width, allowing for margin, subtracting 20px for margin between items */
-    margin: 0px;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-sizing: border-box; /* Added box-sizing to include padding in the width calculation */
-}
-
-.grid-item-main {
-    flex: 0 0 calc(30% - 20px); /* 30% width, allowing for margin, subtracting 20px for margin between items */
-    margin: 0px;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-sizing: border-box; /* Added box-sizing to include padding in the width calculation */
-}
-
-.grid-item:hover {
-    background-color: #636363;
-}
-
 .hidden {
     display: none;
 }

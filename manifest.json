@@ -22,10 +22,6 @@
     "prefer_related_applications": false,
     "related_applications": [],
     "orientation": "any",
-    "scope": "/",
-    "serviceworker": {
-      "src": "/service-worker.js",
-      "scope": "/"
-    }
+    "scope": "/"
   }
   
