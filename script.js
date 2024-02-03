@@ -315,7 +315,7 @@ function addFromInternet() {
 }
 
 function loadBCNSet(setname) {
-                fetch("https://bcn.thebeaconcrafter.club/study/vocabsets/" + setname)
+                fetch("https://turboterms.thebeaconcrafter.club/vocabsets/" + setname)
                     .then(response => response.text())
                     .then(content => processInput(content))
                     .catch(error => {
@@ -326,7 +326,7 @@ function loadBCNSet(setname) {
 }
 
 function loadBCNSetWithDir(directory, setname) {
-    fetch("https://bcn.thebeaconcrafter.club/study/vocabsets/" + directory + "/" + setname)
+    fetch("https://turboterms.thebeaconcrafter.club/vocabsets/" + directory + "/" + setname)
                     .then(response => response.text())
                     .then(content => processInput(content))
                     .catch(error => {
