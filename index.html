@@ -54,6 +54,7 @@
             <progress id="progressBar" value="0" max="100"></progress>
         </div>
         <div id="question" class="question"></div>
+        <div id="answer" class="answer"></div>
         <ul id="options" class="options">
             <li id="option1" class="option" onclick="checkAnswerMultipleChoice(1)"></li>
             <li id="option2" class="option" onclick="checkAnswerMultipleChoice(2)"></li>
@@ -61,9 +62,10 @@
             <li id="option4" class="option" onclick="checkAnswerMultipleChoice(4)"></li>
         </ul>
         <input type="text" id="answerInput" class="answerInput" placeholder="Your Answer">
+        <button id="nextbtn">Next</button>
         <button onclick="checkAnswer()" id="submitbtn">Submit</button>
         <button id="exportBtn" onclick="exportStudySet()">Export</button>
-        <button onclick="endQuiz()">End</button>
+        <button id="endbtn" onclick="endQuiz()">End</button>
     </div>
 
     <!-- Add this modal to your HTML -->

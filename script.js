@@ -164,6 +164,7 @@ function broadcast(text, button1Text, button2Text, button1Action, button2Action)
 
     function enterKeyListener(event) {
         if (event.key === 'Enter') {
+            console.log("enterKeyListener fired: line 160")
             buttonAction();
             document.removeEventListener('keydown', enterKeyListener); // Remove the listener after handling the event
         }
@@ -171,8 +172,8 @@ function broadcast(text, button1Text, button2Text, button1Action, button2Action)
   }
 
 //////INIT//////
-
-console.log('Hi! The app is initialized!');
+console.log('%c TurboTerms ', 'background-image: linear-gradient(90deg,#2c3e50,#3498db); color: white;font-weight:900;font-size:1rem; padding:20px;');
+console.log('%c Developed by Vincent Wackler ', 'background-image: linear-gradient(90deg,#ff0000,#ff873c); color: white;font-weight:900;font-size:1rem; padding:20px;');
 
 //////////
 //SERVER//
@@ -391,6 +392,7 @@ let questioningDirection = 'AB';
 
 function startQuiz() {
     document.querySelector('.homepage').style.display = 'none';
+    document.getElementById('nextbtn').style.display = 'none';
     document.querySelector('.quiz').style.display = 'block';
     console.log('[DEBUG] Starting the quiz!');
 
@@ -428,6 +430,7 @@ function chooseTextMode() {
     multipleChoiceMode = false;
     showNextCard();
     closeBroadcast();
+    enableTextmodeEnterListener();
 }
 
 function chooseMultipleChoice() {
@@ -454,6 +457,7 @@ function setupMultipleChoice() {
         document.getElementById('answerInput').value = ''; // Clear the answer input
         document.getElementById('answerInput').style.display = 'none';
         document.getElementById('submitbtn').style.display = 'none';
+        document.getElementById('nextbtn').style.display = 'none';
         // Display multiple choice options
         for (let i = 1; i <= 4; i++) {
             document.getElementById(`option${i}`).innerText = options[i - 1];
@@ -505,38 +509,115 @@ function getRandomFlashcard() {
 let totalQuestions = 0;
 let correctAnswers = 0;
 
+var keysEnabled = true;
+
 // Add event listeners for number keys 1 to 4
 document.addEventListener('keydown', function(event) {
-    if (multipleChoiceMode) {
-        const keyNumber = parseInt(event.key);
-        if (keyNumber >= 1 && keyNumber <= 4) {
-            checkAnswerMultipleChoice(keyNumber);
+    if(keysEnabled) {
+        if (multipleChoiceMode) {
+            const keyNumber = parseInt(event.key);
+            if (keyNumber >= 1 && keyNumber <= 4) {
+                checkAnswerMultipleChoice(keyNumber);
+                console.log("Keydown 1-4 listener fired: line 520")
+            }
         }
+    } else {
+        console.log("Keys are disabled!");
     }
 });
+
+function makeColorNormalAgain() {
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById(`option${i}`).style.backgroundColor = '#3498db';
+    }
+}
+
+// Function to disable all option buttons
+function disableOptionButtons() {
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById(`option${i}`).classList.add('disabled');
+    }
+}
+
+// Function to enable all option buttons
+function enableOptionButtons() {
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById(`option${i}`).classList.remove('disabled');
+    }
+}
+
+function disableOptionKeys() {
+    keysEnabled = false;
+}
+
+function enableOptionKeys() {
+    keysEnabled = true;
+}
+
 
 // Modify the function checkAnswerMultipleChoice to accept the selected option directly
 function checkAnswerMultipleChoice(optionNumber) {
     const selectedOption = document.getElementById(`option${optionNumber}`).innerText;
     const currentCard = flashcards[currentCardIndex];
 
+    disableOptionButtons();
+    disableOptionKeys();
+    disableTextmodeEnterListener();
+
     // Check the questioning direction and set up the correct answer accordingly
     const correctAnswer = (questioningDirection === 'AB') ? currentCard.translation : currentCard.vocab;
 
     if (selectedOption === correctAnswer) {
         console.log('[DEBUG] Multiple Choice - Correct Answer!');
-        alert(`Correct: ${correctAnswer}!`);
+        //alert(`Correct: ${correctAnswer}!`); //SWITCH TO NEW VISUAL SYSTEM
+        document.getElementById(`option${optionNumber}`).style.backgroundColor = 'green';
         correctAnswers++;
     } else {
+
+        for (let i = 1; i <= 4; i++) {
+            const optionText = document.getElementById(`option${i}`).innerText;
+            if (optionText === correctAnswer) {
+                document.getElementById(`option${i}`).style.backgroundColor = 'green';
+                break;
+            }
+        }
+
         console.log('[DEBUG] Multiple Choice - Incorrect Answer!');
-        alert(`Incorrect. The correct answer is: ${correctAnswer}`);
+        //alert(`Incorrect. The correct answer is: ${correctAnswer}`);
+        document.getElementById(`option${optionNumber}`).style.backgroundColor = 'red';
     }
 
     totalQuestions++;
 
     currentCardIndex++;
-    if (currentCardIndex < flashcards.length) {
+
+    function continueToNext() {
+        makeColorNormalAgain();
         setupMultipleChoice();
+        document.getElementById('nextbtn').style.display = 'none';
+        enableOptionKeys();
+        enableOptionButtons();
+    }
+
+    const keydownListener = function(e) {
+        if (e.key === 'Enter') {
+            console.log("Keydown Enter listener fired: line 600")
+            document.removeEventListener('keydown', keydownListener);
+            continueToNext();
+        }
+    };
+
+    const clickListener = function() {
+        document.removeEventListener('click', clickListener);
+        continueToNext();
+    }
+
+    if (currentCardIndex < flashcards.length) {
+        document.getElementById('nextbtn').style.display = 'inline-block';
+        document.getElementById('nextbtn').addEventListener('click', clickListener);
+        document.addEventListener('keydown', keydownListener);
+        console.log('Going to next card!')
+        //setupMultipleChoice();
     } else {
         endQuiz();
         console.log('[DEBUG] Ended the quiz!');
@@ -582,12 +663,40 @@ flashcards.forEach(card => {
   card.attempted = false;
 });
 
+function disableSubmitButton() {
+    document.getElementById('submitbtn').classList.add('disabled');
+}
+
+function enableSubmitButton() {
+    document.getElementById('submitbtn').classList.remove('disabled');
+}
+
+function disableAnswerInput() {
+    document.getElementById('answerInput').disabled = true;
+}
+
+function enableAnswerInput() {
+    document.getElementById('answerInput').disabled = false;
+}
+
+function enableTextmodeEnterListener() {
+    textmodeEnterListenerEnabled = true;
+}
+
+function disableTextmodeEnterListener() {
+    textmodeEnterListenerEnabled = false;
+}
+
 let totalScore = 0;
 let totalQuestionsText = 0;
 let correctAnswersText = 0;
 let partiallyCorrectAnswers = 0;
+let textmodeEnterListenerEnabled = false;
 
 function checkAnswer() {
+    enableTextmodeEnterListener();
+    disableSubmitButton();
+    disableAnswerInput();
     const userAnswer = document.getElementById('answerInput').value.trim().toLowerCase();
     const currentCard = flashcards[currentCardIndex];
 
@@ -634,37 +743,85 @@ function checkAnswer() {
     if (accuracy >= 1 || userAnswerWithMissingSymbols.toLowerCase() === wordWithMissingSymbols.toLowerCase() || userAnswerWithMissingSymbolsSpace.toLowerCase() === wordWithMissingSymbolsSpace.toLowerCase()) {
         console.log("[DEBUG] Answer is correct!");
         console.log("Accuracy: " + accuracy + " | Deviation: " + deviation + " | Symbols Missing: " + symbolsMissing + " | Answer: " + userAnswer + " | Missing Symbols Answer: " + wordWithMissingSymbols + " | UserA wo symbols" + userAnswerWithMissingSymbols + " | Correct Answer: " + correctAnswer);
-        alert(`Correct: ${correctAnswerOriginalCase}!`);
+        //alert(`Correct: ${correctAnswerOriginalCase}!`);
+        document.getElementById(`answerInput`).style.backgroundColor = 'green';
+        document.getElementById(`answer`).style.visibility = 'visible';
+        document.getElementById(`answer`).innerHTML = "Correct!";
         correctAnswers++;
     } else if (score === 0.5) {
         console.log('[DEBUG] Answer is partially correct!');
-        alert(`Partially Correct: ${correctAnswerOriginalCase}`);
+        //alert(`Partially Correct: ${correctAnswerOriginalCase}`);
         console.log("Accuracy: " + accuracy + " | Deviation: " + deviation + " | Symbols Missing: " + symbolsMissing + " | Answer: " + userAnswer + " | Missing Symbols Answer: " + wordWithMissingSymbols + " | UserA wo symbols" + userAnswerWithMissingSymbols + " | Correct Answer: " + correctAnswer);
+        document.getElementById(`answerInput`).style.backgroundColor = 'orange';
+        document.getElementById(`answer`).style.visibility = 'visible';
+        document.getElementById(`answer`).innerHTML = "Partially correct! The answer is: " + correctAnswerOriginalCase;
         partiallyCorrectAnswers++;
     } else {
         console.log('[DEBUG] Answer is incorrect!');
         console.log("Accuracy: " + accuracy + " | Deviation: " + deviation + " | Symbols Missing: " + symbolsMissing + " | Answer: " + userAnswer + " | Missing Symbols Answer: " + wordWithMissingSymbols + " | UserA wo symbols" + userAnswerWithMissingSymbols + " | Correct Answer: " + correctAnswer);
-        alert(`Incorrect. The correct answer is: ${correctAnswerOriginalCase}`);
+        document.getElementById(`answerInput`).style.backgroundColor = 'red';
+        document.getElementById(`answer`).style.visibility = 'visible';
+        document.getElementById(`answer`).innerHTML = "Wrong! The answer is: " + correctAnswerOriginalCase;
+        //alert(`Incorrect. The correct answer is: ${correctAnswerOriginalCase}`);
     }
 
     totalQuestions++;
-
     currentCardIndex++;
-    showNextCard();
+
+    function continueToNext() {
+        showNextCard();
+        document.getElementById('nextbtn').style.display = 'none';
+        document.getElementById(`answerInput`).style.backgroundColor = 'white';
+        document.getElementById(`answer`).style.visibility = 'hidden';
+        enableSubmitButton();
+        enableAnswerInput();
+        enableTextmodeEnterListener();
+        document.addEventListener('keydown', submitEventListener);
+        console.log('Going to next card!')
+    }
+
+    const clickListener = function() {
+        document.removeEventListener('click', clickListener);
+        continueToNext();
+    }
+        document.getElementById('nextbtn').style.display = 'inline-block';
+        document.getElementById('nextbtn').addEventListener('click', clickListener);
+
+    const keydownListenerEnter = function(e) {
+        if (e.key === 'Enter') {
+            if(textmodeEnterListenerEnabled == "true" || textmodeEnterListenerEnabled == true) { //WHY IN THE FUCKING FUCK IS THIS A FUCKING STRING??!?!?!?! SHOULD BE A GODDAMN BOOLEAN
+                document.removeEventListener('keydown', keydownListenerEnter);
+                continueToNext();
+                console.log("Listener removed. Enter key pressed from textmode because: " + textmodeEnterListenerEnabled);
+            } else {
+                document.removeEventListener('keydown', keydownListenerEnter);
+                console.log("Enter key pressed, but not enabled! Removed Event listener");
+            }
+            }
+        };
+        
+        document.addEventListener('keydown', keydownListenerEnter);
+        //TODO: Add enter key functionality for the next button
+    
+    //showNextCard();
 }
 
 const answerInput = document.getElementById('answerInput');
 
-// Add an event listener for the 'keydown' event on the answer input
-answerInput.addEventListener('keydown', function (event) {
-    // Check if the key pressed is the Enter key (key code 13)
-    if (event.keyCode === 13) {
-        // Prevent the default behavior of the Enter key (e.g., form submission)
-        event.preventDefault();
-        // Call the checkAnswer function when Enter key is pressed
-        checkAnswer();
+const submitEventListener = function(e) {
+    if (e.key === 'Enter') {
+        if(textmodeEnterListenerEnabled == true || textmodeEnterListenerEnabled == "true") {
+            console.log("Submit Enter listener fired: line 813. EnableTextmodeEnterListener: " + textmodeEnterListenerEnabled)
+            document.removeEventListener('keydown', submitEventListener);
+            e.preventDefault();
+            checkAnswer();
+        } else {
+            console.log("Enter key pressed, but not enabled!" + textmodeEnterListenerEnabled);
+        }  
     }
-});
+}
+
+document.addEventListener('keydown', submitEventListener);
 
 function returnAnswer() {
     const currentCard = flashcards[currentCardIndex];

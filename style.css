@@ -273,6 +273,28 @@ textarea:focus {
     margin-top: 50px;
 }
 
+.answer {
+    /*display: none;*/
+    visibility: hidden;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+/* Add this to your CSS file */
+.disabled {
+    pointer-events: none;
+    opacity: 1.0; /* You can adjust the opacity to visually indicate the disabled state */
+}
+
+#endbtn {
+    background-color: #f44336; /* Red Button */
+}
+
+#nextbtn {
+    background-color: #4CAF50; /* Green Button */
+}
+
+
 .hidden {
     display: none;
 }
