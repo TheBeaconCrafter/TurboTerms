@@ -164,6 +164,7 @@ function broadcast(text, button1Text, button2Text, button1Action, button2Action)
 
     function enterKeyListener(event) {
         if (event.key === 'Enter') {
+            event.preventDefault();
             console.log("enterKeyListener fired: line 160")
             buttonAction();
             document.removeEventListener('keydown', enterKeyListener); // Remove the listener after handling the event
@@ -601,6 +602,7 @@ function checkAnswerMultipleChoice(optionNumber) {
 
     const keydownListener = function(e) {
         if (e.key === 'Enter') {
+            e.preventDefault();
             console.log("Keydown Enter listener fired: line 600")
             document.removeEventListener('keydown', keydownListener);
             continueToNext();
@@ -789,6 +791,7 @@ function checkAnswer() {
 
     const keydownListenerEnter = function(e) {
         if (e.key === 'Enter') {
+            e.preventDefault();
             if(textmodeEnterListenerEnabled == "true" || textmodeEnterListenerEnabled == true) { //WHY IN THE FUCKING FUCK IS THIS A FUCKING STRING??!?!?!?! SHOULD BE A GODDAMN BOOLEAN
                 document.removeEventListener('keydown', keydownListenerEnter);
                 continueToNext();
@@ -810,6 +813,7 @@ const answerInput = document.getElementById('answerInput');
 
 const submitEventListener = function(e) {
     if (e.key === 'Enter') {
+        e.preventDefault();
         if(textmodeEnterListenerEnabled == true || textmodeEnterListenerEnabled == "true") {
             console.log("Submit Enter listener fired: line 813. EnableTextmodeEnterListener: " + textmodeEnterListenerEnabled)
             document.removeEventListener('keydown', submitEventListener);
