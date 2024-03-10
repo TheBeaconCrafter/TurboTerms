@@ -199,29 +199,35 @@ async function getVocabSets() {
             vocabSetsContainer.innerHTML = '';
 
             data.directories.forEach(directory => {
-                const vocabSetElement = document.createElement('div');
-                vocabSetElement.innerText = directory;
-                vocabSetElement.style.cursor = 'pointer';
+                // Check if the directory name is not 'index.json'
+                if (directory !== 'index.json') {
+                    const vocabSetElement = document.createElement('div');
+                    vocabSetElement.innerText = directory;
+                    vocabSetElement.style.cursor = 'pointer';
 
-                vocabSetElement.onclick = function () {
-                    getFilesInDirectory(directory);
-                    console.log('Clicked on directory:', directory);
-                };
+                    vocabSetElement.onclick = function () {
+                        getFilesInDirectory(directory);
+                        console.log('Clicked on directory:', directory);
+                    };
 
-                vocabSetsContainer.appendChild(vocabSetElement);
+                    vocabSetsContainer.appendChild(vocabSetElement);
+                }
             });
 
             data.files.forEach(file => {
-                const vocabSetElement = document.createElement('div');
-                vocabSetElement.innerText = file;
-                vocabSetElement.style.cursor = 'pointer';
+                // Check if the file name is not 'index.json'
+                if (file !== 'index.json') {
+                    const vocabSetElement = document.createElement('div');
+                    vocabSetElement.innerText = file;
+                    vocabSetElement.style.cursor = 'pointer';
 
-                vocabSetElement.onclick = function () {
-                    closeBCNModal();
-                    loadBCNSet(file);
-                };
+                    vocabSetElement.onclick = function () {
+                        closeBCNModal();
+                        loadBCNSet(file);
+                    };
 
-                vocabSetsContainer.appendChild(vocabSetElement);
+                    vocabSetsContainer.appendChild(vocabSetElement);
+                }
             });
         } else {
             console.error('Error:', data.error);
