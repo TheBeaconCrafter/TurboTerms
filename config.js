@@ -19,6 +19,6 @@
 //VERSION//
 ///////////
 
-const applicationVersion = "1.1.2"; //This is the version of the application that will be displayed
+const applicationVersion = "1.1.3"; //This is the version of the application that will be displayed
 
 const disableServer = false; //If you want to disable the server feature, set this to true. This will disable the server feature and the serverURL and fileStorageURL will be ignored.

@@ -793,6 +793,7 @@ function checkAnswer() {
         if (e.key === 'Enter') {
             e.preventDefault();
             if(textmodeEnterListenerEnabled == "true" || textmodeEnterListenerEnabled == true) { //WHY IN THE FUCKING FUCK IS THIS A FUCKING STRING??!?!?!?! SHOULD BE A GODDAMN BOOLEAN
+                e.preventDefault();
                 document.removeEventListener('keydown', keydownListenerEnter);
                 continueToNext();
                 console.log("Listener removed. Enter key pressed from textmode because: " + textmodeEnterListenerEnabled);
