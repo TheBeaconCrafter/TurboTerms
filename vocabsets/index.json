@@ -1,0 +1,33 @@
+{
+  "directories": [
+    {
+      "name": "English KS1",
+      "files": [
+        {
+          "name": "1-1 Identity.wvocab",
+          "description": "Page 21 - 25 (Identity)",
+          "id": 1
+        },
+        {
+          "name": "1-2 Education.wvocab",
+          "description": "Page 29 - 35 (Education)",
+          "id": 2
+        },
+        {
+          "name": "1-2 Education in the US.wvocab",
+          "description": "Page 37 - 41 (Education in the US)",
+          "id": 3
+        },
+        {
+          "name": "Changing Roles.wvocab",
+          "description": "Changing Roles vocab for English Class",
+          "id": 4
+        }
+      ]
+    },
+    {
+      "name": "French KS1",
+      "files": []
+    }
+  ]
+}

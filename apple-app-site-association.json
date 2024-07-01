@@ -1,0 +1,24 @@
+{
+  "applinks":{
+    "apps":[
+       
+    ],
+    "details":[
+      {
+        "appIDs":[
+          "LL79C9RM8S.club.thebeaconcrafter.turboterms"
+        ],
+        "components":[
+          {
+            "/":"/app/*",
+            "comment":"Matches URL with a path /login"
+          },
+          {
+            "/":"/product/*",
+            "comment":"Matches any URL with a path that starts with /product/."
+          }
+        ]
+      }
+    ]
+  }
+}

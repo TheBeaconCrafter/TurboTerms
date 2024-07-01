@@ -1,0 +1,26 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "LL79C9RM8S.club.thebeaconcrafter.turboterms"
+        ],
+        "components": [
+          {
+            "/": "*",
+            "comment": "Matches any URL on the website and opens the associated app"
+          },
+          {
+            "/": "/",
+            "comment": "Root dir"
+          },
+          {
+            "/": "/app/*",
+            "comment": "App wildcard"
+          }
+        ]
+      }
+    ]
+  }
+}

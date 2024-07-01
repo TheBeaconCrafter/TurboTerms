@@ -1,0 +1,29 @@
+{
+  "applinks":{
+    "apps":[
+       
+    ],
+    "details":[
+      {
+        "appIDs":[
+          "LL79C9RM8S.club.thebeaconcrafter.turboterms"
+        ],
+        "components":[
+          {
+            "/":"/login",
+            "comment":"Matches URL with a path /login"
+          },
+          {
+            "/":"/product/*",
+            "comment":"Matches any URL with a path that starts with /product/."
+          },
+          {
+            "/":"/secret",
+            "exclude":true,
+            "comment":"Matches URL with a path /secret and instructs the system not to open it as a universal link."
+          }
+        ]
+      }
+    ]
+  }
+}
